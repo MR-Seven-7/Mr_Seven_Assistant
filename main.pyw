@@ -29,15 +29,9 @@ def main():
     screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
     scr_width, scr_height = 323, 30
     # Intialize pygame Window
+    environ['SDL_VIDEO_WINDOW_POS'] = str(((screensize[0]-scr_width)//2))+",0"
     pg.init()
     win = pg.display.set_mode((scr_width, scr_height), pg.NOFRAME)
-
-    # Move Windows to to middle
-    environ['SDL_VIDEO_WINDOW_POS'] = str(((screensize[0]-scr_width)//2))+",0"
-    pg.display.set_mode((101,100))
-
-    #set the size back to normal
-    pg.display.set_mode((scr_width,scr_height), pg.NOFRAME)
 
     # Creating UI Elements
     if settings['theme'] == 'light':
