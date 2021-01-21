@@ -27,7 +27,7 @@ A small virtual assistant made in Python for a code jam, Timathon, held by TechW
 
 <h2> How to know the status ?</h2>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To see status refer to the dot at the last of the window.
-Here is what the color of the circle means : 
+Here is what the color of the circle means : <br>
 <ul>
   <li>Black : Welcome!</li>
   <li>Blue : Listening or Recognizing your vocal input</li>
