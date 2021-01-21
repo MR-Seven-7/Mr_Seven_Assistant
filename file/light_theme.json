@@ -1,0 +1,30 @@
+{
+    "text_entry_line":
+    {
+        "colours":
+        {
+            "dark_bg": "#FFFFFF",
+            "normal_text": "#000000"
+        }
+    },
+    "button":
+    {
+        "colours":
+        {
+            "normal_text":"#000000",
+            "normal_bg":"#FFFFFF"
+        }
+    },
+    "drop_down_menu":
+    {
+        "misc":
+        {
+            "expand_direction": "up"
+        },
+        "colours":
+        {
+            "normal_bg": "#25292e",
+            "hovered_bg": "#35393e"
+        }
+    }
+}
