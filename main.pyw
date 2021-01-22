@@ -67,8 +67,9 @@ def main():
         pg.draw.circle(win, color, (316, 15), 5)
         pg.display.update()
     def exec_cmd(cmd):
+        command_textbox.set_text('')
+        print("Processing...")
         show_status((255, 255, 0))
-        command_textbox.set_text('Processing...')
         status = execute_command(cmd)
         if status[0] == True:
             if status[1] == "successful":
@@ -80,7 +81,6 @@ def main():
         elif status[0] == False:
             speak(status[1])
             show_status((255, 0, 0))
-        command_textbox.set_text('')
 
     # Main Loop
     while run:
