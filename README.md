@@ -1,7 +1,7 @@
 # Mr_Seven_Assistant
 A small virtual assistant made in Python for a code jam, Timathon, held by TechWithTim.
 
-<!--<strong>Note : To access settings or add commands give 'settings' command.</strong>-->
+<strong>Note : To access settings or add commands give 'settings' command.</strong>
 
 <h2> What can it do ?</h2>
 
@@ -37,8 +37,8 @@ Here is what the color of the circle means : <br>
 </ul>
 <h2> Buttons </h2>
 <ul>
-  <li> E : Execute</li>
-  <li> M : Microphone</li>
-  <li> X : Close</li>
+  <li> E : Execute (Enter Key)</li>
+  <li> M : Microphone (Tab Key)</li>
+  <li> X : Close (Esc Key)</li>
   </ul>
   
