@@ -1,18 +1,3 @@
-'''
-Things to do --
-- Send an Email -- Not Secure, Leave it
-- Start application/Open files with the Keystroke/Commands you specifY. -- Done 
-- Play music from the default directories (can be changed)  -- Done
-- Run a Command in Windows Terminal/Command Propmpt. -- Done
-- Search Wikipedia for you. -- Done
-- Remind you something (Works Only if the program is running, at the time specified). -- Can't Handle It Along with other processes
-- Start a timer for you. -- Cancelled
-- Open website for you. -- Done
-- Reply to some other basic questions, like "What's the time?" or "What's your name?" -- A few done
-- Search Youtube -- Done
-'''
-
-
 # Importing Required Modules
 from threading import Thread
 import webbrowser as wb
@@ -106,6 +91,7 @@ def recognize():
         text = recognizer.recognize_google(audio, language=settings["language"])
         # translator = gs.Goslate()
         # text = translator.translate(text, 'En')
+        print(text)
         return text
     except Exception as e:
         print(e)
@@ -141,11 +127,11 @@ def execute_command(command):
             os.system('start ' + runCommands[cmds] + " " + command_to_run)
             return (True, "successful")
 
-    if command == 'settings' or command == 'opencommand':
+    if command == 'settings' or command == 'opensettings' or command == 'setting' or command=='opensetting':
         # os.startfile(__file__.replace('assitant.py', 'settings.pyw'))
         os.startfile('settings.pyw')
         return (True, "successful")
-    if command == 'quit' or command == 'exit' or command == 'close':
+    if command == 'quit' or command == 'exit' or command == 'close' or command=='bye' or command=='byebye':
         exit()
         return "Bye Have a nice day"
     if "play" in command:
@@ -192,6 +178,11 @@ def execute_command(command):
         wb.open(link)
         return (True, "successful")
 
+    if "open" in command:
+        search_results = search(real_command.replace("open", ""))
+        wb.open(search_results[0])
+        return (True, "successful")
+
     if "wiki" in command or "wikipedia" in command:
         query_to_search = real_command.lower()
         query_to_search = query_to_search.replace("wikipedia", "")
@@ -204,11 +195,6 @@ def execute_command(command):
             return (True, "According to wikipidea," + wiki.summary(title=query_to_search, sentences=2, auto_suggest=True))
         else:
             return (False, "Couldn't search wikipedia")
-
-    if "open" in command:
-        search_results = search(real_command.replace("open", ""))
-        wb.open(search_results[0])
-        return (True, "successful")
 
     if "time" in command:
         return (True, datetime.datetime.now().strftime("%I:%M %p"))
@@ -286,7 +272,7 @@ def execute_command(command):
         else:
             return (False, "Couldn't search wikipidea")
 
-    if "whois" in command:
+    if "whois" in command or "whowas" in command:
         query_to_search = real_command.lower()
         query_to_search = query_to_search.replace("wikipedia", "")
         query_to_search = query_to_search.replace("wiki", "")
