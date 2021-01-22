@@ -35,3 +35,10 @@ Here is what the color of the circle means : <br>
   <li>Green : Command executed successfully</li>
   <li>Red : Failed to execute command</li>
 </ul>
+<h2> Buttons </h2>
+<ul>
+  <li> E : Execute</li>
+  <li> M : Microphone</li>
+  <li> X : Close</li>
+  </ul>
+  
