@@ -1,18 +1,3 @@
-'''
-Things to do --
-- Send an Email -- Not Secure, Leave it
-- Start application/Open files with the Keystroke/Commands you specifY. -- Done 
-- Play music from the default directories (can be changed)  -- Done
-- Run a Command in Windows Terminal/Command Propmpt. -- Done
-- Search Wikipedia for you. -- Done
-- Remind you something (Works Only if the program is running, at the time specified). -- Can't Handle It Along with other processes
-- Start a timer for you. -- Cancelled
-- Open website for you. -- Done
-- Reply to some other basic questions, like "What's the time?" or "What's your name?" -- A few done
-- Search Youtube -- Done
-'''
-
-
 # Importing Required Modules
 from threading import Thread
 import webbrowser as wb
