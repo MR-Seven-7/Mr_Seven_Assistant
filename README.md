@@ -38,7 +38,7 @@ Here is what the color of the circle means : <br>
 <h2> Buttons </h2>
 <ul>
   <li> E : Execute (Enter Key)</li>
-  <li> M : Microphone (Tab Key if window if active else Alt Gr key)</li>
+  <li> M : Microphone (Tab Key if window is active else Alt Gr key)</li>
   <li> X : Close (Esc Key)</li>
   </ul>
   
