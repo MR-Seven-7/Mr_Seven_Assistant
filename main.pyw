@@ -4,9 +4,13 @@ import pygame.freetype
 import pygame_gui as pgui
 import win32gui
 import win32con
+from pynput.keyboard import Key, Listener
+import pynput
 from os import environ
 from assitant import *
 from ctypes import windll
+from threading import Thread
+# from time import sleep
 
 user32 = windll.user32
 pid = os.getpid()
@@ -81,6 +85,29 @@ def main():
         elif status[0] == False:
             speak(status[1])
             show_status((255, 0, 0))
+    def on_press(key):
+        if not(run):
+            return False
+        pass
+    
+    def on_release(key):
+        if not(run):
+            return False
+        print(key)
+        if key == Key.alt_gr:
+            try:
+                show_status((0, 0, 255))
+                exec_cmd(recognize())
+            except Exception as e:
+                print(e)
+                speak("Couldn't access Microphone!")
+    def activate_on_keypress():
+        with Listener(on_press=on_press, on_release=on_release) as listener:
+	        listener.join()
+
+    activate = Thread(target=activate_on_keypress)
+    activate.daemon = True
+    activate.start()
 
     # Main Loop
     while run:
