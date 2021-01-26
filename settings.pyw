@@ -36,15 +36,7 @@ def main():
     for index, name in enumerate(sr.Microphone.list_microphone_names()):
         microphone_names.append(name)
     microphone_names.append('Default')
-    default_settings = {
-    "theme":"dark",
-    "name":"Jarvis",
-    "voice":0,
-    "rate":200,
-    "language":languages[0],
-    "music dir":musicDir,
-    "microphone":0
-    }
+    from assitant import default_settings
 
 
     try:
@@ -70,7 +62,15 @@ def main():
     quit_btn = pgui.elements.UIButton(relative_rect=pg.Rect(315, 40, 30, 30), text="X", manager=manager, object_id="quit_btn")
     theme_slct = pgui.elements.UIDropDownMenu(relative_rect=pg.Rect(0, 185 + 70, 350, 30), starting_option='Light Theme' if settings['theme'] == 'light' else 'Dark Theme', options_list=["Dark Theme", "Light Theme"], object_id="theme_slct", manager=manager)
     voice_menu = pgui.elements.UIDropDownMenu(relative_rect=pg.Rect(0, 130 + 70, 350, 30), options_list=voice_names, manager=manager, object_id='voice_menu', starting_option=voice_names[settings['voice']])
-    lang_menu = pgui.elements.UIDropDownMenu(relative_rect=pg.Rect(0, 75 + 70, 350, 30), options_list=languages, manager=manager, object_id='lang_menu', starting_option=settings['language'])
+    lang_menu = pgui.elements.UIDropDownMenu(relative_rect=pg.Rect(0, 75 + 70, 175, 30), options_list=languages, manager=manager, object_id='lang_menu', starting_option=settings['language'])
+    pos_names = ['Normal', 'At Bottom', 'On Top']
+    if settings['pos'] == 'none':
+        start_value_pos = 0
+    elif settings['pos'] == 'bottom':
+        start_value_pos = 1
+    else:
+        start_value_pos = 2
+    pos_menu = pgui.elements.UIDropDownMenu(relative_rect=pg.Rect(175, 75 + 70, 175, 30), options_list=pos_names, manager=manager, object_id='pos_menu', starting_option=pos_names[start_value_pos])
     voice_rate_scroller = pgui.elements.UIHorizontalSlider(relative_rect=pg.Rect(0,20 + 70, 350, 30), start_value=settings['rate'], value_range=(100, 400), manager=manager, object_id="rate_scroller")
     musicDir_textbox = pgui.elements.UITextEntryLine(relative_rect=pg.Rect(0, 240 + 70, 320, 30), manager=manager, object_id='music_dir_textbox')
     musicDir_textbox.set_text(settings['music dir'])
@@ -151,6 +151,14 @@ def main():
                             if mic == event.text:
                                 settings['microphone'] = index
 
+                    if event.ui_object_id == "pos_menu":
+                        if event.text == "On Top":
+                            settings['pos'] = "top"
+                        elif event.text == "At Bottom":
+                            settings['pos'] = "bottom"
+                        elif event.text == "Normal":
+                            settings['pos'] = "none"
+
                 if event.user_type == pgui.UI_BUTTON_PRESSED:
                     if event.ui_object_id == "quit_btn":
                         run = False
@@ -166,6 +174,7 @@ def main():
                 
                     if event.ui_object_id == 'apply_btn':
                         settings['music dir'] == musicDir_textbox.text
+                        print(settings)
                         with open('file/config.txt', 'w') as f:
                             f.writelines(str(settings))
 

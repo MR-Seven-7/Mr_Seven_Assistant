@@ -51,7 +51,8 @@ def main():
 
     # Pin Window to top
     hwnd = win32gui.GetForegroundWindow()
-    win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 600, 300, 0, 0, win32con.SWP_NOSIZE|win32con.SWP_NOMOVE)
+    if settings['pos'] == "top":
+        win32gui.SetWindowPos(hwnd, win32con.HWND_TOPMOST, 600, 300, 0, 0, win32con.SWP_NOSIZE|win32con.SWP_NOMOVE)
     
     # Declaring Variables
     clock = pg.time.Clock()
@@ -93,9 +94,9 @@ def main():
     def on_release(key):
         if not(run):
             return False
-        print(key)
         if key == Key.alt_gr:
             try:
+                # speak("Yes sir!")
                 show_status((0, 0, 255))
                 exec_cmd(recognize())
             except Exception as e:
@@ -111,6 +112,8 @@ def main():
 
     # Main Loop
     while run:
+        if settings['pos'] == "bottom":
+            win32gui.SetWindowPos(hwnd, 1, 600, 300, 0, 0, win32con.SWP_NOSIZE|win32con.SWP_NOMOVE)
         time_delta = clock.tick(20)/1000.0
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -122,6 +125,8 @@ def main():
                     exec_cmd(command_textbox.text)
                 if event.key == pg.K_TAB:
                     try:
+                        # speak("Yes sir!")
+                        show_status((0, 0, 255))
                         exec_cmd(recognize())
                     except Exception as e:
                         print(e)
@@ -139,6 +144,7 @@ def main():
                         exec_cmd(command_textbox.text)
                     elif event.ui_element == mic_button:
                         try:
+                            # speak("Yes sir!")
                             show_status((0, 0, 255))
                             exec_cmd(recognize())
                         except Exception as e:

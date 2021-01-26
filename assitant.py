@@ -1,3 +1,18 @@
+'''
+Things to do --
+- Send an Email -- Not Secure, Leave it
+- Start application/Open files with the Keystroke/Commands you specifY. -- Done 
+- Play music from the default directories (can be changed)  -- Done
+- Run a Command in Windows Terminal/Command Propmpt. -- Done
+- Search Wikipedia for you. -- Done
+- Remind you something (Works Only if the program is running, at the time specified). -- Can't Handle It Along with other processes
+- Start a timer for you. -- Cancelled
+- Open website for you. -- Done
+- Reply to some other basic questions, like "What's the time?" or "What's your name?" -- A few done
+- Search Youtube -- Done
+'''
+
+
 # Importing Required Modules
 from threading import Thread
 import webbrowser as wb
@@ -19,11 +34,14 @@ languages = ["en-us", "en-In"]
 musicDir = os.path.join(os.path.expanduser("~"), "Music")
 
 default_settings = {
-    "name":"Jarvis",
+    "theme":"light",
+    "name":"Seven",
     "voice":0,
     "rate":200,
     "language":languages[0],
-    "music dir":musicDir
+    "music dir":musicDir,
+    "microphone":"default",
+    "pos":"top"
 }
 
 try:
@@ -78,15 +96,18 @@ def recognize():
     recognizer = sr.Recognizer()
     if settings['microphone'] != 'default':
         with sr.Microphone(settings['microphone']) as source:
+            speak("Yes sir!")
             recognizer.pause_threshold = 1
             print("Listening...")
             audio = recognizer.listen(source)
     else:
         with sr.Microphone() as source:
+            speak("Yes sir!")
             recognizer.pause_threshold = 1
             print("Listening...")
             audio = recognizer.listen(source)
     try:
+        speak("Just a second sir")
         print('Trying to recognize...')
         text = recognizer.recognize_google(audio, language=settings["language"])
         # translator = gs.Goslate()
@@ -108,6 +129,7 @@ def execute_command(command):
     command = command.replace(settings["name"], '')
     command = command.lower()
     command = command.replace(" ", '')
+    command = command.replace("'s", 'is')
 
     for cmds in openCommands:
         cmds_check = cmds.replace(" ", "")
@@ -206,10 +228,10 @@ def execute_command(command):
         return (True, datetime.datetime.now().strftime("%A, %B %d, %Y"))
 
     if "whatisyourname" in command:
-        return (True, "Jarvis")
+        return (True, settings['name'])
     
     if "whoareyou" in command:
-        return (True, "Jarvis, Your Assistant Sir!")
+        return (True, settings['name'] + ", Your Assistant Sir!")
 
     if "howareyou" in command:
         return (True, "Pretty Well")
