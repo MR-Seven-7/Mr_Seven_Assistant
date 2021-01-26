@@ -1,1 +1,0 @@
-{'theme': 'light', 'name': 'Jarvis', 'voice': 0, 'rate': 400, 'language': 'en-us', 'music dir': 'C:\\Users\\mr7se\\Music', 'microphone': 'default'}
