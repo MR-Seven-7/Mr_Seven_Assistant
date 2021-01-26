@@ -57,6 +57,8 @@ def main():
     # Declaring Variables
     clock = pg.time.Clock()
     run = True
+    tab_pressed = False
+    enter_pressed = False
 
     # Function to draw window
     def redraw_ui():
@@ -121,11 +123,13 @@ def main():
                 # break
                 pass
             elif event.type == pg.KEYDOWN:
-                if event.key == pg.K_RETURN:
+                if event.key == pg.K_RETURN and (not(tab_pressed) and not(enter_pressed)):
+                    enter_pressed = True
                     exec_cmd(command_textbox.text)
-                if event.key == pg.K_TAB:
+                if event.key == pg.K_TAB and (not(tab_pressed) and not(enter_pressed)):
                     try:
                         # speak("Yes sir!")
+                        tab_pressed = True
                         show_status((0, 0, 255))
                         exec_cmd(recognize())
                     except Exception as e:
@@ -135,6 +139,11 @@ def main():
                 if event.key == pg.K_ESCAPE:
                     run = False
                     break
+            elif event.type == pg.KEYUP:
+                if event.key == pg.K_RETURN:
+                    enter_pressed = False
+                elif event.key == pg.K_TAB:
+                    tab_pressed = False
             elif event.type == pg.USEREVENT:
                 if event.user_type == pgui.UI_BUTTON_PRESSED:
                     if event.ui_element == close_button:
