@@ -6,8 +6,11 @@ import speech_recognition as sr
 from tkinter import *
 from tkinter.filedialog import askdirectory
 import os
+from os import environ
 import json
 import subprocess as s
+from ctypes import windll
+user32 = windll.user32
 
 # Main Function
 def main():
@@ -22,9 +25,11 @@ def main():
     # Intialize pygame Window
     pg.init()
     scr_width, scr_height = 350, 580 + 70
+    screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
+    # Intialize pygame Window
+    environ['SDL_VIDEO_WINDOW_POS'] = str(((screensize[0]-scr_width)//2))+",0"
     win = pg.display.set_mode((scr_width, scr_height))
     pg.display.set_caption("Settings")
-    os.environ['SDL_VIDEO_WINDOW_POS'] = "100,100"
 
     # Variables
     speak = ps.init('sapi5')
@@ -94,6 +99,7 @@ def main():
         show_text(medium_font, win, (5, 5 + 70), 'Voice Rate :', font_color)
         show_text(medium_font, win, (100, 5 + 70), str(voice_rate_scroller.get_current_value()), font_color)
         show_text(medium_font, win, (5, 55 + 70), 'Language :', font_color)
+        show_text(medium_font, win, (180, 55 + 70), 'Position :', font_color)
         show_text(medium_font, win, (5, 110 + 70), 'Voice :', font_color)
         show_text(medium_font, win, (5, 165 + 70), 'Theme :', font_color)
         show_text(medium_font, win, (5, 220 + 70), 'Music Directory :', font_color)
