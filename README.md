@@ -11,7 +11,7 @@ A small virtual assistant made in Python for a code jam, Timathon, held by TechW
     Value = pip install<br>
     Command = pip install module_name<br>This will pip install the module.<br><br>Or<br><br>
     Key = open code<br>
-    Value = location of Visual studio code or its shorcut (Avoid using quotation marks)we<br>
+    Value = location of Visual studio code or its shorcut (Avoid using quotation marks)<br>
     Command = open code<br>
     This will open Visual studio code
     </li>
