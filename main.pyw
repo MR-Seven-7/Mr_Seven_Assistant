@@ -1,3 +1,5 @@
+# Say hi to your face, Seven!
+
 # Imports
 import pygame as pg
 import pygame.freetype
@@ -31,7 +33,7 @@ def main():
         font.render_to(window, pos, text, color)
 
     screensize = user32.GetSystemMetrics(0), user32.GetSystemMetrics(1)
-    scr_width, scr_height = 323, 30
+    scr_width, scr_height = 323, 32
     # Intialize pygame Window
     environ['SDL_VIDEO_WINDOW_POS'] = str(((screensize[0]-scr_width)//2))+",0"
     pg.init()
@@ -41,9 +43,11 @@ def main():
     if settings['theme'] == 'light':
         manager = pgui.UIManager((scr_width, scr_height), 'file/light_theme.json')
         color = (255, 255, 255)
+        status_color = (0, 0, 0)
     else:
         manager = pgui.UIManager((scr_width, scr_height), 'file/dark_theme.json')
         color = (0, 0, 0)
+        status_color = (255, 255, 255)
     command_textbox = pgui.elements.UITextEntryLine(relative_rect=pg.Rect(5, int(2.5), 200, 30), manager=manager, object_id="command_textbox")
     exec_button = pgui.elements.UIButton(relative_rect=pg.Rect(206, int(2.5), 35, int(29.5)), text="E", manager=manager)
     mic_button = pgui.elements.UIButton(relative_rect=pg.Rect(int(241.5), int(2.5), 35, int(29.5)), text="M", manager=manager)

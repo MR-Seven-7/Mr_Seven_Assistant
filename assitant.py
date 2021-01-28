@@ -1,17 +1,4 @@
-'''
-Things to do --
-- Send an Email -- Not Secure, Leave it
-- Start application/Open files with the Keystroke/Commands you specifY. -- Done 
-- Play music from the default directories (can be changed)  -- Done
-- Run a Command in Windows Terminal/Command Propmpt. -- Done
-- Search Wikipedia for you. -- Done
-- Remind you something (Works Only if the program is running, at the time specified). -- Can't Handle It Along with other processes
-- Start a timer for you. -- Cancelled
-- Open website for you. -- Done
-- Reply to some other basic questions, like "What's the time?" or "What's your name?" -- A few done
-- Search Youtube -- Done
-'''
-
+# Say hi to your brain, Seven!
 
 # Importing Required Modules
 from threading import Thread
@@ -146,8 +133,14 @@ def execute_command(command):
         if cmds_check in command:
             ("Found Command")
             command_to_run = runCommands[cmds] + " " + command.replace(cmds_check, "")
-            os.system('start ' + runCommands[cmds] + " " + command_to_run)
+            os.system('start ' + 'powershell '+ runCommands[cmds] + " " + command_to_run + ";pause")
             return (True, "successful")
+            # if os.system('start ' +'powershell '+ runCommands[cmds] + " " + command_to_run):
+            #     return (True, "successful")
+            # elif os.system('start ' + runCommands[cmds] + " " + command_to_run):
+            #     return (True, "successful")
+            # else:
+            #     return (False, "No Such Terminal Command")
 
     if command == 'settings' or command == 'opensettings' or command == 'setting' or command=='opensetting':
         # os.startfile(__file__.replace('assitant.py', 'settings.pyw'))

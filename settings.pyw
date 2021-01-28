@@ -1,3 +1,5 @@
+# Say hi to your body, Seven!
+
 import pygame as pg
 import pygame_gui as pgui
 import pygame.freetype
@@ -218,6 +220,13 @@ def main():
                                 f.writelines(str(line) for line in x)
                         terminal_command_key_textbox.set_text('')
                         terminal_command_value_textbox.set_text('')
+                        with open('file/pid.txt', 'r') as f:
+                            pid = int(f.read())
+
+                        killProcess(pid)
+                        os.startfile(__file__.replace('settings.pyw', 'main.pyw'))
+                        os.startfile(__file__)
+                        exit()
                     
                     if event.ui_object_id == 'launch_command_add':
                         with open('file/commands.txt', 'r') as f:
@@ -232,8 +241,9 @@ def main():
                             except:
                                 runCommands = {}
                         
-                        if launch_command_key_textbox.text.strip() != '' and launch_command_value_textbox.text.strip():
-                            openCommands[launch_command_key_textbox.text] = launch_command_value_textbox.text#.replace('"', '')
+                        if launch_command_key_textbox.text.strip() != '':
+                            print(launch_command_key_textbox.text.strip())
+                            openCommands[launch_command_key_textbox.text] = launch_command_value_textbox.text.replace('"', '')
                             try:
                                 x[0] = openCommands
                             except:
@@ -245,6 +255,13 @@ def main():
                                 f.write(str(x[0]) + '\n' + str(x[1]))
                         launch_command_key_textbox.set_text('')
                         launch_command_value_textbox.set_text('')
+                        with open('file/pid.txt', 'r') as f:
+                            pid = int(f.read())
+
+                        killProcess(pid)
+                        os.startfile(__file__.replace('settings.pyw', 'main.pyw'))
+                        os.startfile(__file__)
+                        exit()
 
             manager.process_events(event)
         redraw_ui()
